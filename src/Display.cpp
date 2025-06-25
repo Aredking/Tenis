@@ -2,7 +2,7 @@
 
 Display* Display::instancePtr = nullptr;
 
-Display* Display::getInstance(unsigned short width, unsigned short height)
+Display* Display::getInstance(unsigned int width, unsigned int height)
 {
     if (instancePtr == nullptr)
     {
@@ -11,7 +11,7 @@ Display* Display::getInstance(unsigned short width, unsigned short height)
     return instancePtr;
 }
 
-Display::Display(unsigned short width, unsigned short height) : SCALE(2), WIDTH(width), HEIGHT(height)
+Display::Display(unsigned int width, unsigned int height) : SCALE(2), WIDTH(width), HEIGHT(height)
 {
     setSizeConsole();
     deactivationCursor();
@@ -65,7 +65,7 @@ void Display::drawBounds()
     }
 }
 
-void Display::printSym(short x, short y, Display::Symbols symbol)
+void Display::printSym(int x, int y, Display::Symbols symbol)
 {
     HANDLE handle;
     COORD coordinates;

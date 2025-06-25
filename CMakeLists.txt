@@ -9,12 +9,12 @@ set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
 add_executable(Tenis src/main.cpp
 					 src/Game.cpp
 					 src/Display.cpp
-					 src/Racket.cpp
-					 src/LeftRacket.cpp
-					 src/RightRacket.cpp
+					 src/ARacket.cpp
+					 src/HRacket.cpp
+					 src/VRacket.cpp
 
 					 include/Game.h
 					 include/Display.h
-					 include/Racket.h 
-				     include/LeftRacket.h
-					 include/RightRacket.h)
+					 include/ARacket.h 
+				     include/HRacket.h
+					 include/VRacket.h)

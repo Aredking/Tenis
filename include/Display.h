@@ -10,11 +10,11 @@ class Display
 private:
 
     static Display* instancePtr;
-    Display(unsigned short width, unsigned short height);
+    Display(unsigned int width, unsigned int height);
 
-    const unsigned short WIDTH;
-    const unsigned short HEIGHT;
-    const unsigned short SCALE;
+    const unsigned int WIDTH;
+    const unsigned int HEIGHT;
+    const unsigned int SCALE;
 
     static enum class Symbols
     {
@@ -30,10 +30,10 @@ private:
 public:
 
     Display(const Display& obj) = delete;
-    static Display* getInstance(unsigned short width, unsigned short height);
+    static Display* getInstance(unsigned int width, unsigned int height);
 
     void drawBounds();
-    void printSym(short x, short y, Display::Symbols symbol);
+    void printSym(int x, int y, Display::Symbols symbol);
 
 };
 

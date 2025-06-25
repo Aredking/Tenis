@@ -1,6 +1,7 @@
 #include "../include/Game.h"
 
-Game::Game()
+Game::Game() :
+	racket1(5)
 {
 	display = Display::getInstance(WIDTH, HEIGHT);
 }
@@ -11,7 +12,7 @@ void Game::run()
 
 	do
 	{
-		
+		racket1.control();
 	} while (true);
 }
 
