@@ -16,6 +16,14 @@ Display::Display(unsigned int width, unsigned int height) : SCALE(2), WIDTH(widt
     setSizeConsole();
     deactivationCursor();
     setFont();
+
+    map = new Display::Symbols * [HEIGHT];
+    for (size_t i = 0; i < HEIGHT; ++i)
+    {
+        map[i] = new Display::Symbols[WIDTH];
+        for (size_t j = 0; j < WIDTH; ++j)
+            map[i][j] = Display::Symbols::SPACE;
+    }
 }
 
 void Display::deactivationCursor()
@@ -47,9 +55,20 @@ void Display::setFont()
     cfi.nFont = 0;
     cfi.FontFamily = FF_DONTCARE;
     cfi.FontWeight = FW_NORMAL;
-    wcscpy(cfi.FaceName, L"arial");
+    //wcscpy(cfi.FaceName, L"arial");
 
     SetCurrentConsoleFontEx(GetStdHandle(STD_OUTPUT_HANDLE), false, &cfi);
+}
+
+void Display::setCursorePos(int x, int y)
+{
+
+    HANDLE handle;
+    COORD coordinates;
+    handle = GetStdHandle(STD_OUTPUT_HANDLE);
+    coordinates.X = x * SCALE;
+    coordinates.Y = y;
+    SetConsoleCursorPosition(handle, coordinates);
 }
 
 
@@ -60,18 +79,38 @@ void Display::drawBounds()
     {
         for (int j = 0; j < WIDTH; ++j)
         {
-            if (i == 0 || j == 0 || i == HEIGHT - 1 || j == WIDTH - 1) printSym(j, i, Display::Symbols::BORDER);
+            if (i == 0 || j == 0 || i == HEIGHT - 1 || j == WIDTH - 1) map[i][j] = Display::Symbols::BORDER;
         }
     }
 }
 
-void Display::printSym(int x, int y, Display::Symbols symbol)
+void Display::drawRacket(const std::vector<Coord>& segmentsRacket)
 {
-    HANDLE handle;
-    COORD coordinates;
-    handle = GetStdHandle(STD_OUTPUT_HANDLE);
-    coordinates.X = x * SCALE;
-    coordinates.Y = y;
-    SetConsoleCursorPosition(handle, coordinates);
-    std::cout << '#';
+    for (const auto& segment : segmentsRacket)
+        map[segment.y][segment.x] = Display::Symbols::RACKET;
+}
+
+void Display::clear()
+{
+    for (size_t i = 0; i < HEIGHT; ++i)
+        for (size_t j = 0; j < WIDTH; ++j)
+            map[i][j] = Display::Symbols::SPACE;
+}
+
+void Display::display()
+{
+    for (size_t i = 0; i < HEIGHT; ++i)
+        for (size_t j = 0; j < WIDTH; ++j)
+        {
+            setCursorePos(j, i);
+            std::cout << static_cast<char>(map[i][j]);
+        }
+
+}
+
+Display::~Display()
+{
+    for (size_t i = 0; i < HEIGHT; ++i)
+        delete[] map[i];
+    delete[] map;
 }

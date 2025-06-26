@@ -7,10 +7,14 @@
 
 class VRacket : public ARacket
 {
+private:
+	
+	int upKey, downKey;
+
 public:
 
-	VRacket(unsigned int widthRacket);
+	VRacket(unsigned int widthRacket, Coord firstSegment, int upKey_, int downKey_);
 
-	void control() override;
+	void control(unsigned int racketMoveAreaWidth) override;
 
 };

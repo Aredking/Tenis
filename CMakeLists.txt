@@ -17,4 +17,5 @@ add_executable(Tenis src/main.cpp
 					 include/Display.h
 					 include/ARacket.h 
 				     include/HRacket.h
-					 include/VRacket.h)
+					 include/VRacket.h
+					 include/Coord.h)

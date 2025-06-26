@@ -4,6 +4,9 @@
 #include <windows.h>
 #include <string>
 #include <format>
+#include <vector>
+
+#include "../include/Coord.h"
 
 class Display
 {
@@ -20,12 +23,17 @@ private:
     {
         BORDER = '#',
         BOLL = '*',
-        RACKET = 'H'
+        RACKET = 'H',
+        SPACE = ' '
     };
 
     void deactivationCursor();
     void setSizeConsole();
     void setFont();
+
+    void setCursorePos(int x, int y);
+
+    Display::Symbols** map;
 
 public:
 
@@ -33,7 +41,13 @@ public:
     static Display* getInstance(unsigned int width, unsigned int height);
 
     void drawBounds();
-    void printSym(int x, int y, Display::Symbols symbol);
+    void drawRacket(const std::vector<Coord>& segmentsRacket);
+
+    void clear();
+    
+    void display();
+
+    ~Display();
 
 };
 

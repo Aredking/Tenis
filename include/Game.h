@@ -15,6 +15,7 @@ private:
 	const unsigned int HEIGHT = 25;
 
 	VRacket racket1;
+	VRacket racket2;
 
 public:
 

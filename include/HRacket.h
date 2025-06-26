@@ -9,8 +9,8 @@ class HRacket : public ARacket
 {
 public:
 
-	HRacket(unsigned int widthRacket);
+	HRacket(unsigned int widthRacket, Coord firstSegment);
 
-	void control() override;
+	void control(unsigned int racketMoveAreaWidth) override;
 
 };

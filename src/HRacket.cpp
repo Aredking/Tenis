@@ -1,12 +1,9 @@
 #include "../include/HRacket.h"
 
-HRacket::HRacket(unsigned int widthRacket) : ARacket(widthRacket) {}
+HRacket::HRacket(unsigned int widthRacket, Coord firstSegment) : ARacket(widthRacket) {}
 
 
-void HRacket::control()
+void HRacket::control(unsigned int racketMoveAreaWidth)
 {
-	if (GetKeyState('W'))
-		std::cout << "A";
-	else if (GetKeyState('S'))
-		std::cout << "D";
+
 }

@@ -2,16 +2,10 @@
 
 #include <vector>
 
+#include "../include/Coord.h"
+
 class ARacket
 {
-public:
-
-	static struct Coord
-	{
-		unsigned int x;
-		unsigned int y;
-	};
-
 protected:
 
 	std::vector<Coord> segments;
@@ -19,9 +13,9 @@ protected:
 public:
 
 	ARacket(unsigned int widthRacket);
-	const std::vector<Coord>& getRacket() const { return segments; }
+	const std::vector<Coord>& getRacket() const;
 
-	virtual void control() = 0;
+	virtual void control(unsigned int racketMoveAreaWidth) = 0;
 
 };
 
